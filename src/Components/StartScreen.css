@@ -1,7 +1,42 @@
+.start {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+    text-align: center;
+    z-index: 6
+}
+
 .start h1 {
-    font-size: 35px;
+    font-size: 45px;
+    margin-bottom: -5px;
 }
 
 .start p {
-    margin-bottom: 20px;
+    margin-bottom: 40px;
+    z-index: 5
+}
+
+.start-legenda {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 3
+}
+
+.logo {
+    width: 120px;
+    height: auto;
+    margin-bottom: -30px;
+    z-index: 2
+}
+
+.pop {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    opacity: 0.45; 
 }

@@ -61,7 +61,7 @@ const Game = ({
       ) : (
         <>
           <p className='points'>
-            <span>Pontuação: {score}</span>
+            <span className='pontuacao'>Pontuação: {score}</span>
           </p>
           <h1>Adivinhe a palavra:</h1>
           <h3 className='tip'>

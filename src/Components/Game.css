@@ -1,34 +1,46 @@
 .game h1 {
-    font-size: 40px;
-}
-
-.points span {
+    font-size: 3rem; /* Ajusta o tamanho da fonte para 40px */
+    margin-bottom: 1rem; /* Adiciona um espaço inferior menor */
+  }
+  
+  .points span {
     font-weight: bold;
-}
+    font-size: 1.5rem; 
+  }
 
-.span-tip {
-    color: rgb(255, 230, 0);
-}
+  
+  .span-tip {
+    color: #ffea00; 
+  }
+  
+  
 
-.wordContainer {
-    margin: 1;
-    padding: 35px;
-    border: 10px solid rgb(255, 51, 0);
+  
+  .wordContainer {
+    margin: 1rem; /* Margem menor */
+    padding: 2rem; /* Padding aumentado */
+    border: 0.5rem solid #ff330000; /* Borda vermelha com espessura reduzida */
     display: flex;
     justify-content: center;
-}
-
-.letter, .blankSquare {
-    font-size: 70px;
+    gap: 1rem; /* Espaço entre elementos reduzido */
+  }
+  
+  .letter, .blankSquare {
+    font-size: 3.5rem; /* Tamanho de fonte aumentado */
     line-height: 1.5;
-    border: 2px solid #000;
-    height: 100px;
-    width: 100px;
+    height: 6rem; /* Altura e largura ajustadas para quadrados menores */
+    width: 6rem;
     text-transform: uppercase;
-    background-color: #fff;
+    background-color: #ffffff;
+    border-radius: 20px;
     color: #000;
     font-weight: bold;
-}
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
 
 .letterContainer p {
     margin-bottom: 20px;

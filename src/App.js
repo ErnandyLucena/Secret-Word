@@ -41,7 +41,6 @@ function App() {
     setGuessedLetters([]);
     setWrongLetters([]);
     setGuesses(3);
-    setScore(0);
     setGameStage(stages[1].name);
   };
 
@@ -51,24 +50,31 @@ function App() {
 
     if (pickedWord.toLowerCase().includes(lowercaseLetter)) {
       setGuessedLetters([...guessedLetters, lowercaseLetter]);
-      setScore(score + 1);
+
+      // Verifica se a palavra foi completamente adivinhada
+      const uniqueLetters = [...new Set(letters)];
+      if (guessedLetters.length + 1 === uniqueLetters.length) {
+        setScore(score + 100); // Adiciona 100 pontos
+        startGame(); // Começa uma nova rodada
+      }
     } else {
       setWrongLetters([...wrongLetters, lowercaseLetter]);
       setGuesses(guesses - 1);
+
+      if (guesses - 1 === 0) {
+        endGame(false); // Finaliza o jogo em caso de derrota
+      }
     }
   };
 
   // Finaliza o jogo com vitória ou derrota
   const endGame = useCallback((isVictory) => {
-    if (isVictory) {
-      setGameStage(stages[2].name); // Tela de fim de jogo com vitória
-    } else {
-      setGameStage(stages[2].name); // Tela de fim de jogo com derrota
-    }
+    setGameStage(stages[2].name); // Tela de fim de jogo
   }, [stages]);
 
   // Reinicia o jogo
   const retry = () => {
+    setScore(0);
     setGameStage(stages[0].name); // Volta para a tela inicial
   };
 
@@ -85,10 +91,9 @@ function App() {
           wrongLetters={wrongLetters}
           guesses={guesses}
           score={score}
-          endGame={endGame}
         />
       )}
-      {gameStage === 'end' && <GameOver retry={retry} />}
+      {gameStage === 'end' && <GameOver retry={retry} score={score} />}
     </div>
   );
 }

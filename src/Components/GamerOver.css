@@ -1,18 +1,18 @@
 .game-over {
     text-align: center;
-    margin-top: 20vh; /* Ajuste conforme necessário */
+    margin-top: 20vh; 
   }
   
   .game-over h1 {
     font-size: 2rem;
-    color: #333; /* Cor do texto */
+    color: #333; 
   }
   
   .game-over button {
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     cursor: pointer;
     margin-top: 20px;
@@ -20,6 +20,6 @@
   }
   
   .game-over button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+    background-color: #0056b3; 
   }
   
