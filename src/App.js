@@ -1,12 +1,9 @@
 import './App.css';
-//components
+import React, { useCallback, useState } from 'react';
 import StartScreen from './Components/StartScreen';
-//react
-import { useCallback, useEffect, useState } from "react";
-
-import { wordList } from './data/words';
 import Game from './Components/Game';
 import GameOver from './Components/GameOver';
+import { wordList } from './data/words';
 
 const stages = [
   { id: 1, name: "start" },
@@ -22,68 +19,74 @@ function App() {
   const [pickedCategory, setPickedCategory] = useState("");
   const [letters, setLetters] = useState([]);
 
-  const [guessedLetters, SetGuessedLeters] = useState([])
-  const [wrongLetters, setWrongLetters] = useState([])
-  const [guesses, setGuesses] = useState(3)
-  const [score, setScore] = useState(0)
+  const [guessedLetters, setGuessedLetters] = useState([]);
+  const [wrongLetters, setWrongLetters] = useState([]);
+  const [guesses, setGuesses] = useState(3);
+  const [score, setScore] = useState(0);
 
-  const pickWordAndCategory = () => {
+  const pickWordAndCategory = useCallback(() => {
     const categories = Object.keys(words);
     const category = categories[Math.floor(Math.random() * categories.length)];
-
-    console.log(category);
-
-    // Pick a random word
     const word = words[category][Math.floor(Math.random() * words[category].length)];
-
-    console.log(word);
-
     return { word, category };
-  };
+  }, [words]);
 
-  // Starts the secret word game
+  // Inicia o jogo
   const startGame = () => {
     const { word, category } = pickWordAndCategory();
-
-    // Create an array of lowercase letters from the word
-    const wordLetters = word.split("").map(Wordletters => Wordletters.toLowerCase());
-
-    console.log(word, category);
-    console.log(wordLetters)
-
+    const wordLetters = word.split("").map(letter => letter.toLowerCase());
     setPickedWord(word);
     setPickedCategory(category);
     setLetters(wordLetters);
+    setGuessedLetters([]);
+    setWrongLetters([]);
+    setGuesses(3);
+    setScore(0);
     setGameStage(stages[1].name);
   };
 
-  // Process the letter input
+  // Verifica se a letra está na palavra e atualiza o estado
   const verifyLetter = (letter) => {
-    console.log(letter);
+    const lowercaseLetter = letter.toLowerCase().trim();
+
+    if (pickedWord.toLowerCase().includes(lowercaseLetter)) {
+      setGuessedLetters([...guessedLetters, lowercaseLetter]);
+      setScore(score + 1);
+    } else {
+      setWrongLetters([...wrongLetters, lowercaseLetter]);
+      setGuesses(guesses - 1);
+    }
   };
 
-  // Restart the game
+  // Finaliza o jogo com vitória ou derrota
+  const endGame = useCallback((isVictory) => {
+    if (isVictory) {
+      setGameStage(stages[2].name); // Tela de fim de jogo com vitória
+    } else {
+      setGameStage(stages[2].name); // Tela de fim de jogo com derrota
+    }
+  }, [stages]);
+
+  // Reinicia o jogo
   const retry = () => {
-    setGameStage(stages[0].name);
+    setGameStage(stages[0].name); // Volta para a tela inicial
   };
 
   return (
     <div className="App">
       {gameStage === 'start' && <StartScreen startGame={startGame} />}
       {gameStage === 'game' && (
-
-      <Game 
-
-      verifyLetter={verifyLetter}
-      pickedWord={pickedWord}
-      pickedCategory={pickedCategory}
-      letters={letters}
-      guessedLetters={guessedLetters}
-      wrongLetters={wrongLetters}
-      guesses={guesses}
-      score={score}
-
-      />
+        <Game
+          verifyLetter={verifyLetter}
+          pickedWord={pickedWord}
+          pickedCategory={pickedCategory}
+          letters={letters}
+          guessedLetters={guessedLetters}
+          wrongLetters={wrongLetters}
+          guesses={guesses}
+          score={score}
+          endGame={endGame}
+        />
       )}
       {gameStage === 'end' && <GameOver retry={retry} />}
     </div>

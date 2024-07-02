@@ -1,13 +1,13 @@
-import React from './StartScreen.css'
+import './StartScreen.css';
 
-const StartScreen = ({startGame}) => {
+const StartScreen = ({ startGame }) => {
   return (
     <div className="start">
-        <h1>Secret Word</h1>
-        <p>Clique no botão para iniciar</p>
-        <button onClick={startGame}>Iniciar</button>
+      <h1>Secret Word</h1>
+      <p>Clique no botão para iniciar</p>
+      <button onClick={startGame}>Iniciar</button>
     </div>
-  )
-}
+  );
+};
 
-export default StartScreen
+export default StartScreen;

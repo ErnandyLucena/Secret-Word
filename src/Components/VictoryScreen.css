@@ -1,0 +1,31 @@
+/* VictoryScreen.css */
+
+.victory {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .victory h1 {
+    font-size: 2.5rem;
+    color: green;
+  }
+  
+  .victory p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .victory button {
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .victory button:hover {
+    background-color: darkgreen;
+  }
+  
